@@ -7,14 +7,20 @@ export const foods =[
 },
 {
     id: 2,
-    name: "Pavê prutado",
-    price: 16.99,
-    emoji: "🍰",
+    name: "Pavê com morangos",
+    price: 19.99,
+    emoji: "🍓",
 },
 {
     id: 3,
-    name: "Pavê Gurmet",
-    price: 18.99,
-    emoji: "🍰",
-}
+    name: "Pavê com uvas",
+    price: 15.99,
+    emoji: "🍇",
+},
+{
+    id: 3,
+    name: "àqua",
+    price: 2.99,
+    emoji: "🥛",
+},
 ]
