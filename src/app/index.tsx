@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import {
+  Alert,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 import FoodCard from "../components/FoodCard";
-import { foods } from "../constants/foods";
+import { foods, special } from "../constants/foods";
 
 export default function HomeScreen() {
   const [cart, setCart] = useState<any[]>([]);
@@ -23,6 +23,15 @@ export default function HomeScreen() {
     setCart((current) =>
       current.filter((_, itemIndex) => itemIndex !== index)
     );
+  }
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  function finishOrder() {
+    Alert.alert(
+      "Pedido realizado! 🎉",
+      `Sua compra de R$ ${total.toFixed(2)} foi confirmada e já está sendo preparada.`
+    );
+    setCart([]);
   }
 
   return (
@@ -59,7 +68,13 @@ export default function HomeScreen() {
           Uma combinação perfeita para o seu dia.
         </Text>
 
-        <TouchableOpacity className="mt-5 self-start rounded-xl bg-white px-5 py-3">
+        <Text className="mt-2 text-1xl font-bold text-white">
+          R$ 29,99 
+        </Text>
+
+        <TouchableOpacity
+          onPress={() => addToCart(special)}
+          className="mt-5 self-start rounded-xl bg-white px-5 py-3">
           <Text className="font-bold text-orange-500">
             Peça Agora!!!
           </Text>
@@ -74,12 +89,12 @@ export default function HomeScreen() {
       <View className="mb-6 flex-row justify-between">
         <TouchableOpacity className="w-[30%] items-center rounded-2xl bg-orange-50 py-5">
           <Text className="text-4xl">🍰</Text>
-          <Text className="mt-2">Pavê</Text>
+          <Text className="mt-2">Pavês</Text>
         </TouchableOpacity>
 
         <TouchableOpacity className="w-[30%] items-center rounded-2xl bg-orange-50 py-5">
           <Text className="text-4xl">🍓</Text>
-          <Text className="mt-2">Pavês Trufados</Text>
+          <Text className="mt-2">Trufados</Text>
         </TouchableOpacity>
 
         <TouchableOpacity className="w-[30%] items-center rounded-2xl bg-orange-50 py-5">
@@ -120,23 +135,46 @@ export default function HomeScreen() {
             key={index}
             className="mb-3 flex-row items-center justify-between rounded-xl bg-gray-100 p-4"
           >
-            <Text>
+            <Text className="w-[40%]">
               {item.emoji} {item.name}
             </Text>
 
-            <Text className="font-bold text-orange-500">
+            <Text className="w-[30%] text-center font-bold text-orange-500">
               R$ {item.price.toFixed(2)}
             </Text>
 
             <TouchableOpacity
               onPress={() => removeFromCart(index)}
+              className="w-[25%] items-center rounded-xl bg-red-400 py-2"
             >
-              <Text className="text-red-500">
+              <Text className="font-bold text-red-900">
                 Remover
               </Text>
             </TouchableOpacity>
           </View>
         ))
+      )}
+
+      {cart.length > 0 && (
+        <View className="mb-10 mt-2 rounded-2xl bg-orange-50 p-5">
+          <View className="flex-row items-center justify-between">
+            <Text className="text-lg font-bold text-gray-700">
+              Total da compra:
+            </Text>
+            <Text className="text-2xl font-bold text-orange-500">
+              R$ {total.toFixed(2)}
+            </Text>
+          </View>
+
+          <TouchableOpacity
+            onPress={finishOrder}
+            className="mt-4 items-center rounded-xl bg-orange-500 py-4"
+          >
+            <Text className="text-lg font-bold text-white">
+              Finalizar Compra
+            </Text>
+          </TouchableOpacity>
+        </View>
       )}
 
     </ScrollView>
