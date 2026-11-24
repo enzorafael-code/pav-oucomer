@@ -36,75 +36,75 @@ export default function HomeScreen() {
 
   return (
     <ScrollView
-      className="flex-1 bg-white px-5"
+      className="flex-1 bg-amber-50 px-5"
       showsVerticalScrollIndicator={false}
     >
       {/* Cabeçalho */}
       <View className="mb-6 mt-4">
-        <Text className="text-base text-gray-500">
+        <Text className="text-base text-amber-800">
           Olá! 👋
         </Text>
 
-        <Text className="mt-2 text-base font-bold text-orange-500">
+        <Text className="mt-2 text-base font-bold text-amber-800">
           Itens no carrinho: {cart.length}
         </Text>
 
-        <Text className="mt-1 text-3xl font-bold">
+        <Text className="mt-1 text-3xl font-bold text-stone-900">
           O que deseja comer hoje?
         </Text>
       </View>
 
       {/* Oferta especial */}
-      <View className="rounded-3xl bg-orange-500 p-5">
-        <Text className="text-sm font-bold text-white">
+      <View className="rounded-3xl bg-amber-900 p-5">
+        <Text className="text-sm font-bold text-amber-200">
           OFERTA ESPECIAL.
         </Text>
 
-        <Text className="mt-2 text-3xl font-bold text-white">
+        <Text className="mt-2 text-3xl font-bold text-amber-50">
           Frutado + Tradicional.
         </Text>
 
-        <Text className="mt-2 text-base text-white">
+        <Text className="mt-2 text-base text-amber-100">
           Uma combinação perfeita para o seu dia.
         </Text>
 
-        <Text className="mt-2 text-1xl font-bold text-white">
+        <Text className="mt-2 text-1xl font-bold text-amber-50">
           R$ 29,99 
         </Text>
 
         <TouchableOpacity
           onPress={() => addToCart(special)}
-          className="mt-5 self-start rounded-xl bg-white px-5 py-3">
-          <Text className="font-bold text-orange-500">
+          className="mt-5 self-start rounded-xl bg-amber-50 px-5 py-3">
+          <Text className="font-bold text-amber-900">
             Peça Agora!!!
           </Text>
         </TouchableOpacity>
       </View>
 
       {/* Categorias */}
-      <Text className="mb-4 mt-8 text-2xl font-bold">
+      <Text className="mb-4 mt-8 text-2xl font-bold text-stone-900">
         Categorias.
       </Text>
 
       <View className="mb-6 flex-row justify-between">
-        <TouchableOpacity className="w-[30%] items-center rounded-2xl bg-orange-50 py-5">
+        <View className="w-[30%] items-center rounded-2xl bg-orange-100/70 py-5">
           <Text className="text-4xl">🍰</Text>
-          <Text className="mt-2">Pavês</Text>
-        </TouchableOpacity>
+          <Text className="mt-2 text-stone-900">Pavês</Text>
+        </View>
 
-        <TouchableOpacity className="w-[30%] items-center rounded-2xl bg-orange-50 py-5">
+        <View className="w-[30%] items-center rounded-2xl bg-orange-100/70 py-5">
           <Text className="text-4xl">🍓</Text>
-          <Text className="mt-2">Trufados</Text>
-        </TouchableOpacity>
+          <Text className="mt-2 text-stone-900">Trufados</Text>
+        </View>
 
-        <TouchableOpacity className="w-[30%] items-center rounded-2xl bg-orange-50 py-5">
+        <View className="w-[30%] items-center rounded-2xl bg-orange-100/70 py-5">
           <Text className="text-4xl">🥛</Text>
-          <Text className="mt-2">Bebidas</Text>
-        </TouchableOpacity>
+          <Text className="mt-2 text-stone-900">Bebidas</Text>
+        </View>
       </View>
 
       {/* Produtos populares */}
-      <Text className="mb-4 mt-8 text-2xl font-bold">
+      <Text className="mb-4 mt-8 text-2xl font-bold text-stone-900">
         Produtos populares
       </Text>
 
@@ -114,40 +114,40 @@ export default function HomeScreen() {
             key={food.id}
             name={food.name}
             price={food.price}
-            emoji={food.emoji}
+            image={food.image}
             onAdd={() => addToCart(food)}
           />
         ))}
       </View>
 
       {/* Carrinho */}
-      <Text className="mb-4 mt-8 text-2xl font-bold">
+      <Text className="mb-4 mt-8 text-2xl font-bold text-stone-900">
         Carrinho
       </Text>
 
       {cart.length === 0 ? (
-        <Text className="mb-6 text-gray-500">
+        <Text className="mb-6 text-amber-800">
           Seu carrinho está vazio. 🛒
         </Text>
       ) : (
         cart.map((item, index) => (
           <View
             key={index}
-            className="mb-3 flex-row items-center justify-between rounded-xl bg-gray-100 p-4"
+            className="mb-3 flex-row items-center justify-between rounded-xl bg-orange-100/70 p-4"
           >
-            <Text className="w-[40%]">
+            <Text className="w-[40%] text-stone-900">
               {item.emoji} {item.name}
             </Text>
 
-            <Text className="w-[30%] text-center font-bold text-orange-500">
+            <Text className="w-[30%] text-center font-bold text-amber-800">
               R$ {item.price.toFixed(2)}
             </Text>
 
             <TouchableOpacity
               onPress={() => removeFromCart(index)}
-              className="w-[25%] items-center rounded-xl bg-red-400 py-2"
+              className="w-[25%] items-center rounded-xl bg-amber-900 py-2"
             >
-              <Text className="font-bold text-red-900">
+              <Text className="font-bold text-amber-50">
                 Remover
               </Text>
             </TouchableOpacity>
@@ -156,21 +156,21 @@ export default function HomeScreen() {
       )}
 
       {cart.length > 0 && (
-        <View className="mb-10 mt-2 rounded-2xl bg-orange-50 p-5">
+        <View className="mb-10 mt-2 rounded-2xl bg-orange-100/70 p-5">
           <View className="flex-row items-center justify-between">
-            <Text className="text-lg font-bold text-gray-700">
+            <Text className="text-lg font-bold text-stone-900">
               Total da compra:
             </Text>
-            <Text className="text-2xl font-bold text-orange-500">
+            <Text className="text-2xl font-bold text-amber-800">
               R$ {total.toFixed(2)}
             </Text>
           </View>
 
           <TouchableOpacity
             onPress={finishOrder}
-            className="mt-4 items-center rounded-xl bg-orange-500 py-4"
+            className="mt-4 items-center rounded-xl bg-amber-800 py-4"
           >
-            <Text className="text-lg font-bold text-white">
+            <Text className="text-lg font-bold text-amber-50">
               Finalizar Compra
             </Text>
           </TouchableOpacity>
