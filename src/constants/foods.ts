@@ -3,7 +3,7 @@ export const foods = [
     id: 1,
     name: "Pavê de chocolate",
     price: 14.99,
-    emoji: "🍰",
+    emoji: "🍫",
     image: require("../../assets/images/pavêchocolate.png"),
   },
   {

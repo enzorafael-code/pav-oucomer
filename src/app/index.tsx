@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Alert,
+  Image,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -88,7 +89,10 @@ export default function HomeScreen() {
 
       <View className="mb-6 flex-row justify-between">
         <View className="w-[30%] items-center rounded-2xl bg-orange-100/70 py-5">
-          <Text className="text-4xl">🍰</Text>
+          <Image
+            source={require("../../assets/images/emoji.png")}
+            className="h-10 w-10"
+          />
           <Text className="mt-2 text-stone-900">Pavês</Text>
         </View>
 
